@@ -1,0 +1,38 @@
+products:
+    Product1:
+        - "protocol": "FC-NVMe"
+        - "card": "Card1"
+        - "dev_name": "nvme0n1"          # If you have multiple drives, add like this "nvme0n1,nvme1n1,nvme2n1"
+    Product2:
+        - "protocol": "FC-NVMe"
+        - "card": "Card2"
+        - "dev_name": "nvme1n1"
+
+host:
+    ip: "localhost"
+    user: "root"
+    passwd: "mypassword"
+
+test_config:                                    # Add the FIO profile configuration as per your requirement
+    duration: 15
+    write_percentage: 50
+    block_size: 4096
+    iodepth: 1
+    numjobs: 64
+    cpus: 0,1
+    sleep_time: 10
+    rate_iops: null 
+    rate: null 
+
+topology:
+    name: "mytopology.png"            # If you wish to your PNG file with the topology diagram, please upload the
+                                      # PNG file in the location ~/dashboard/assets/ and provide the file name here
+
+# Only for the Dashboard Speedometer Gauges
+gauge:
+    iops:   
+        max: 200000                    # Add the max IOPS here, this is a static number just to set the Speedometer Gauge
+    throughput:
+        max: 3200                      # Add the max Throughput(in MBps) here, if the card under test is of 32Gbps, you should enter 3200
+
+
