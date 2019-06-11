@@ -104,7 +104,8 @@ def competitive_tests(n_clicks):
         _iostat_output = iostat_output[value]
         _final_csv = final_csv[value]
         _fio_result = fio_result[value]
-        _fio_dev = _dev.replace("nvme", "/dev/nvme") 
+        #_fio_dev = _dev.replace("nvme", "/dev/nvme")
+        _fio_dev = ":".join([ "/dev/"+i for i in _dev.split(":")]) 
 
         # Start collecting the IOSTAT
         monitor_stat.start_iostat(_dev, duration, _iostat_output)
@@ -154,21 +155,11 @@ block_size = cfg['test_config']['block_size']
 iodepth = cfg['test_config']['iodepth']
 numjobs = cfg['test_config']['numjobs']
 cpus = cfg['test_config']['cpus']
+if  cpus.endswith(","):
+    cpus = cpus.replace(",", "")
 rate_iops = cfg['test_config']['rate_iops']
 rate = cfg['test_config']['rate']
 
-# device = cfg['storage_config']['dev_name'].split(",")
-# device = get_devices(device)
-
-
-
-# # Building the fio command
-# cmd = fio_cmd()
-
-# # Starting the FIO
-# print(cmd)
-# fio_test = Thread(target=JobWrapper_fio_Local, args=(cmd,))
-# fio_test.start()
 
 
 

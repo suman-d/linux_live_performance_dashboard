@@ -112,7 +112,7 @@ with open(config, 'r') as ymlfile:
 # duration = cfg['test_config']['duration']
 sleep_time = cfg['test_config']['sleep_time']
 cpus = cfg['test_config']['cpus'].split(",")
-
+cpus = [c for c in cpus if c]
 
 # # Starting the monitoring
 # start_iostat(dev_name, duration)

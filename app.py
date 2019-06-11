@@ -45,7 +45,7 @@ def get_header():
 
         html.Div([
             html.H1(
-                'Linux Performance Demo Dashboard')
+                'Performance Demo Dashboard')
         ], className="twelve columns padded",
            style={'text-align': 'center', 'margin-bottom': '15px', 'color': '#DC143C'})
         ], className="row gs-header gs-text-header")
@@ -506,7 +506,8 @@ def start_fio(n_clicks):
         _iostat_output = iostat_output[test_name]
         _final_csv = final_csv[test_name]
         _fio_result = fio_result[test_name]
-        _fio_dev = _dev.replace("nvme", "/dev/nvme")
+        #_fio_dev = _dev.replace("nvme", "/dev/nvme")
+        _fio_dev = ":".join([ "/dev/"+i for i in _dev.split(":")])
 
         if n_clicks >0:
             if not myfio.fio_running():
@@ -1269,6 +1270,6 @@ def writethroughput_live(_,interval):
     point = int(point)
     return point 
 
-app.run_server(host="0.0.0.0", debug=True)
+app.run_server(host="0.0.0.0")
 #app.run_server(host="0.0.0.0")
 
